@@ -7,16 +7,15 @@ import Cart from './home/cart';
 import ShippingPage from './home/shipping';
 import MyOrdersPage from './home/orders';
 import ContactUs from './home/contact';
+import Home from './home/userHome';
 export default function HomePage() {
   return (
     <div className="h-screen w-full">
       <Header />
       <div className='w-full h-[calc(100vh-100px)] '>
         <Routes path="/*">
-          <Route path="/" element={<h1>this is Home Page</h1>} />
+          <Route path="/" element={<Home/>} />
           <Route path="/products" element={<ProductPage/>} />
-          <Route path="/login" element={<LoginPage/>} />
-
           <Route path="/cart" element={<Cart/>}/>
           <Route path="/shipping" element={<ShippingPage/>}/>
           <Route path='/contact' element={<ContactUs/>}/>   

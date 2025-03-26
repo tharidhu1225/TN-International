@@ -2,6 +2,8 @@ import { useState } from "react";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { IoClose } from "react-icons/io5";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import { FaHome, FaBoxOpen, FaShippingFast, FaClipboardList, FaPhone } from "react-icons/fa";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -16,14 +18,13 @@ export default function Header() {
 
         {/* Desktop Navigation */}
         <nav className="hidden lg:flex space-x-8">
-          <NavLink to="/" label="Home" />
-          <NavLink to="/products" label="Products" />
-          <NavLink to="/about" label="About Us" />
-          <NavLink to="/contact" label="Contact Us" />
-          <NavLink to="/cart" label="Cart" />
+          <NavLink to="/" label="Home" icon={<FaHome />} />
+          <NavLink to="/products" label="Products" icon={<FaBoxOpen />} />
+          <NavLink to="/shipping" label="Add Order" icon={<FaShippingFast />} />
+          <NavLink to="/orders" label="Orders" icon={<FaClipboardList />} />
+          <NavLink to="/contact" label="Contact Us" icon={<FaPhone />} />
         </nav>
 
-       
         {/* Mobile Menu Button */}
         <button
           className="lg:hidden text-3xl text-gray-700"
@@ -35,8 +36,22 @@ export default function Header() {
 
       {/* Mobile Navigation */}
       {isOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 z-50">
-          <div className="bg-white w-64 h-full shadow-lg p-6 flex flex-col">
+        <motion.div
+          initial={{ x: "100%" }}
+          animate={{ x: 0 }}
+          exit={{ x: "100%" }}
+          transition={{ type: "tween", duration: 0.3 }}
+          className="fixed inset-0 bg-black bg-opacity-50 z-50"
+          onClick={() => setIsOpen(false)}
+        >
+          <motion.div
+            initial={{ x: "100%" }}
+            animate={{ x: 0 }}
+            exit={{ x: "100%" }}
+            transition={{ type: "tween", duration: 0.3 }}
+            className="bg-white w-64 h-full shadow-lg p-6 flex flex-col"
+            onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside
+          >
             <button
               className="self-end text-3xl text-gray-600"
               onClick={() => setIsOpen(false)}
@@ -44,27 +59,27 @@ export default function Header() {
               <IoClose />
             </button>
 
-            <nav className="mt-6 space-y-4">
-              <NavLink to="/" label="Home" onClick={() => setIsOpen(false)} />
-              <NavLink to="/products" label="Products" onClick={() => setIsOpen(false)} />
-              <NavLink to="/about" label="About Us" onClick={() => setIsOpen(false)} />
-              <NavLink to="/contact" label="Contact Us" onClick={() => setIsOpen(false)} />
-              <NavLink to="/cart" label="Cart" onClick={() => setIsOpen(false)} />
+            <nav className="mt-4 space-y-5 flex flex-col">
+              <NavLink to="/" label="Home" icon={<FaHome />} onClick={() => setIsOpen(false)} />
+              <NavLink to="/products" label="Products" icon={<FaBoxOpen />} onClick={() => setIsOpen(false)} />
+              <NavLink to="/shipping" label="Add Order" icon={<FaShippingFast />} onClick={() => setIsOpen(false)} />
+              <NavLink to="/orders" label="Orders" icon={<FaClipboardList />} onClick={() => setIsOpen(false)} />
+              <NavLink to="/contact" label="Contact Us" icon={<FaPhone />} onClick={() => setIsOpen(false)} />
             </nav>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       )}
     </header>
   );
 }
 
 // Reusable Navigation Link Component
-const NavLink = ({ to, label, onClick }) => (
+const NavLink = ({ to, label, icon, onClick }) => (
   <Link
     to={to}
-    className="text-lg font-medium text-gray-700 hover:text-accent transition"
+    className="flex items-center gap-3 text-lg font-medium text-gray-700 hover:text-accent transition"
     onClick={onClick}
   >
-    {label}
+    {icon} {label}
   </Link>
 );
