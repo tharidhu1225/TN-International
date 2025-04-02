@@ -75,10 +75,10 @@ export default function AdminProductsPage() {
                     {product.productName}
                   </td>
                   <td className="px-6 py-4 border-b text-gray-600">
-                    ${product.price}
+                    LKR.{product.price}
                   </td>
                   <td className="px-6 py-4 border-b text-gray-600">
-                    ${product.lastPrice}
+                    LKR.{product.lastPrice}
                   </td>
                   <td className="px-6 py-4 border-b text-gray-600">
                     {product.stock}
