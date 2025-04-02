@@ -3,10 +3,11 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 
-export default function ShippingPage() {
+export default function CheckoutPage() {
   const navigate = useNavigate();
   const [items, setItems] = useState([]);
   const [myName, setmyName] = useState("");
+  const [myNumber, setmyNumber] = useState("");
   const [customerName, setcustomerName] = useState("");
   const [email, setEmail] = useState("");
   const [address, setAddress] = useState("");
@@ -30,7 +31,7 @@ export default function ShippingPage() {
   };
 
   const handleOrder = async () => {
-    if (!myName ||!customerName|| !email || !address || !phone || items.length === 0) {
+    if (!myName ||!myNumber ||!customerName|| !email || !address || !phone || items.length === 0) {
       toast.error("All fields are required!");
       return;
     }
@@ -43,7 +44,7 @@ export default function ShippingPage() {
 
       if (response.status === 201) {
         toast.success("Order placed successfully!");
-        setTimeout(() => navigate("/home/home"), 2000);
+        setTimeout(() => navigate("/"), 2000);
       }
     } catch (error) {
       toast.error("Failed to place order.");
@@ -73,6 +74,11 @@ export default function ShippingPage() {
       <div className="mb-6">
         <label className="block text-sm font-medium mb-1">Enter Your Name</label>
         <input type="text" className="border p-2 w-full" value={myName} onChange={(e) => setmyName(e.target.value)} placeholder="Enter Your Name" />
+      </div>
+
+      <div className="mb-6">
+        <label className="block text-sm font-medium mb-1">Enter Your Contact Number</label>
+        <input type="tel" className="border p-2 w-full" value={myNumber} onChange={(e) => setmyNumber(e.target.value)} placeholder="Enter Your Contact Number" />
       </div>
 
       <div className="mb-6">

@@ -9,11 +9,11 @@ export default function ImageSlider(props) {
       <img src={images[activeImage]} className="w-full aspect-square object-cover" />
       <div className="absolute bottom-0 w-full h-[100px] backdrop-blur-lg">
         <div className="w-full h-full  flex items-center justify-center overflow-hidden">
-          {images.map((image, index) => (
+          {images.map((images, index) => (
             <img
               onClick={() => setActiveImage(index)}
               key={index}
-              src={image}
+              src={images}
               className=" w-16 h-16 cursor-pointer  object-cover  mx-2"
             />
           ))}

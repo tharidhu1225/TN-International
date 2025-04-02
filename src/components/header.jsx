@@ -21,7 +21,6 @@ export default function Header() {
           <NavLink to="/" label="Home" icon={<FaHome />} />
           <NavLink to="/products" label="Products" icon={<FaBoxOpen />} />
           <NavLink to="/shipping" label="Add Order" icon={<FaShippingFast />} />
-          <NavLink to="/orders" label="Orders" icon={<FaClipboardList />} />
           <NavLink to="/contact" label="Contact Us" icon={<FaPhone />} />
         </nav>
 
