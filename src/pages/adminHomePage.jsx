@@ -7,6 +7,7 @@ import AdminOrdersPage from "./admin/adminOrderPage";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import axios from "axios";
+import OrdersTable from "./admin/adminOrderPage";
 
 export default function AdminHomePage() {
   const [user,setUser] = useState(null)
@@ -54,7 +55,7 @@ export default function AdminHomePage() {
           <Route path="/products" element={<AdminProductsPage/>} />
           <Route path="/products/addProduct" element={<AddProductForm/>} />
           <Route path="/products/editProduct" element={<EditProductForm/>} />
-          <Route path="/orders" element={<AdminOrdersPage/>} />
+          <Route path="/orders" element={<OrdersTable/>} />
           <Route path="/customers" element={<h1>Customers</h1>} />
           <Route path="/*" element={<h1>404 not found the admin page</h1>}/>
         </Routes>
